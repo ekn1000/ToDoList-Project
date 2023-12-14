@@ -1,18 +1,15 @@
 import { useRef, useState } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpShortWide } from "@fortawesome/free-solid-svg-icons";
 import { Button, Slide } from "@mui/material";
-import TodoItem from "./TodoItem";
 import { AnimatePresence } from "framer-motion";
-
+import TodoItem from "./TodoItem";
 
 const TodoItems = ({ todos, onDelete, onChange }) => {
   const [isShowButton, setIsShowButton] = useState(false);
-  const ref = useRef(null)
+  const ref = useRef(null);
 
-  const startingPosition = () => (
-    (ref.current) && (ref.current.scrollTop = 0)
-  )
+  const startingPosition = () => ref.current && (ref.current.scrollTop = 0);
 
   const checkScroll = () => {
     if (ref.current) {
@@ -22,9 +19,11 @@ const TodoItems = ({ todos, onDelete, onChange }) => {
 
   return (
     <section className="relative">
-      <div ref={ref}
+      <div
+        ref={ref}
         onScroll={checkScroll}
-        className="overflow-y-auto h-60 scroll-smooth">
+        className="overflow-y-auto h-60 scroll-smooth"
+      >
         <AnimatePresence>
           {todos.map((todo, i) => {
             return (
@@ -43,26 +42,32 @@ const TodoItems = ({ todos, onDelete, onChange }) => {
           })}
         </AnimatePresence>
       </div>
-      <div className={`absolute transition-all bottom-2 right-20 ${isShowButton ? 'opacity-100' : 'opacity-0'}`}>
+      <div
+        className={`absolute transition-all bottom-2 right-20 ${
+          isShowButton ? "opacity-100" : "opacity-0"
+        }`}
+      >
         <Slide
           // direction="up"
           direction="up"
           in={isShowButton}
           container={ref.current}
         >
-          <Button variant="contained"
+          <Button
+            variant="contained"
             onClick={startingPosition}
             sx={{
               fontSize: "18px",
               borderRadius: "100%",
               padding: "16px 0",
-            }}>
+            }}
+          >
             <FontAwesomeIcon icon={faArrowUpShortWide} />
           </Button>
         </Slide>
       </div>
     </section>
   );
-}
+};
 
-export default TodoItems
+export default TodoItems;

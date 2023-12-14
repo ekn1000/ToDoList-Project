@@ -2,7 +2,7 @@ import { Fade, Tooltip } from "@mui/material";
 import { useState } from "react";
 
 const TodoForm = ({ onAdd }) => {
-  const [text, setText] = useState("")
+  const [text, setText] = useState("");
 
   return (
     <section className="rounded-md pt-10 pb-10 px-3 bg-[#a0a0a0] text-center">
@@ -31,18 +31,19 @@ const TodoForm = ({ onAdd }) => {
           TransitionProps={{ timeout: 600 }}
           title="Please write the text"
         >
-          <button
-            type="submit"
-            className="font-medium tracking-wide p-1 bg-white rounded-md duration-300 hover:bg-gray-300 disabled:text-gray-400 disabled:cursor-not-allowed w-120 ml-3 outline-none"
-            disabled={!text.trim()}
-          >
-            Add
-          </button>
+          <span>
+            <button
+              type="submit"
+              className="font-medium tracking-wide p-1 bg-white rounded-md duration-300 hover:bg-gray-300 disabled:text-gray-400 disabled:cursor-not-allowed w-120 ml-3 outline-none"
+              disabled={!text.trim()}
+            >
+              Add
+            </button>
+          </span>
         </Tooltip>
       </form>
     </section>
   );
-}
+};
 
-export default TodoForm
-
+export default TodoForm;
